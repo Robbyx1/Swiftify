@@ -54,7 +54,7 @@ export default function AlbumInfoPage() {
             </TableRow>
           </TableHead>
           <TableBody>
-            {
+            {/* {
               // TODO (TASK 23): render the table content by mapping the songData array to <TableRow> elements
               // Hint: the skeleton code for the very first row is provided for you. Fill out the missing information and then use a map function to render the rest of the rows.
               // Hint: it may be useful to refer back to LazyTable.js
@@ -68,7 +68,21 @@ export default function AlbumInfoPage() {
                 <TableCell key='Plays'>Replace me</TableCell>
                 <TableCell key='Duration'>Replace me (use the formatDuration helper function, see SongCard.js for an example)</TableCell>
               </TableRow>
-            }
+            } */}
+            {songData.map((song, index) => (
+              song.song_id ? (
+                <TableRow key={song.song_id}>
+                  <TableCell>{song.number}</TableCell>
+                  <TableCell>
+                    <Link component="button" onClick={() => setSelectedSongId(song.song_id)}>
+                      {song.title}
+                    </Link>
+                  </TableCell>
+                  <TableCell>{song.plays}</TableCell>
+                  <TableCell>{formatDuration(song.duration)}</TableCell>
+                </TableRow>
+              ) : null 
+            ))}
           </TableBody>
         </Table>
       </TableContainer>

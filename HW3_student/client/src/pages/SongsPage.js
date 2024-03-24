@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react';
-import { Button, Checkbox, Container, FormControlLabel, Grid, Link, Slider, TextField } from '@mui/material';
+import { Button, Checkbox, Container, FormControlLabel, Grid, Link, Slider, TextField, Box } from '@mui/material';
 import { DataGrid } from '@mui/x-data-grid';
 
 import SongCard from '../components/SongCard';
@@ -111,10 +111,62 @@ export default function SongsPage() {
         </Grid>
         {/* TODO (TASK 24): add sliders for danceability, energy, and valence (they should be all in the same row of the Grid) */}
         {/* Hint: consider what value xs should be to make them fit on the same row. Set max, min, and a reasonable step. Is valueLabelFormat is necessary? */}
+        <Grid item xs={4}>
+        <p>Danceability</p>
+        <Slider
+          value={danceability}
+          min={0}
+          max={1}
+          step={0.01}
+          onChange={(e, newValue) => setDanceability(newValue)}
+          valueLabelDisplay="auto"
+        />
       </Grid>
-      <Button onClick={() => search() } style={{ left: '50%', transform: 'translateX(-50%)' }}>
+      <Grid item xs={4}>
+        <p>Energy</p>
+        <Slider
+          value={energy}
+          min={0}
+          max={1}
+          step={0.01}
+          onChange={(e, newValue) => setEnergy(newValue)}
+          valueLabelDisplay="auto"
+        />
+      </Grid>
+      <Grid item xs={4}>
+        <p>Valence</p>
+        <Slider
+          value={valence}
+          min={0}
+          max={1}
+          step={0.01}
+          onChange={(e, newValue) => setValence(newValue)}
+          valueLabelDisplay="auto"
+        />
+      </Grid>
+      </Grid>
+      {/* <Button onClick={() => search() } style={{ left: '50%', transform: 'translateX(-50%)' }}>
         Search
-      </Button>
+      </Button> */}
+      <Box 
+        display="flex" 
+        justifyContent="center" 
+        alignItems="center" 
+        p={2} 
+        m={2} 
+        border={1} 
+        borderColor="primary.main" 
+        borderRadius={2}
+        style={{ transform: 'translateX(-50%)', left: '50%', position: 'relative' }}
+      >
+        <Button 
+          variant="contained" 
+          color="primary" 
+          onClick={() => search()}
+          >
+          Search
+        </Button>
+      </Box>
       <h2>Results</h2>
       {/* Notice how similar the DataGrid component is to our LazyTable! What are the differences? */}
       <DataGrid
